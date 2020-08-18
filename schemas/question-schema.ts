@@ -5,6 +5,6 @@ export const QuestionSchema = new mongoose.Schema({
     type: String
   },
   result: {
-    type: String
+    type: Boolean
   }
 });

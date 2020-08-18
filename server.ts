@@ -1,9 +1,9 @@
 import express from 'express';
-import cors from 'cors';
-import bodyParse from 'body-parser';
+import bodyParser from 'body-parser'; 
+import cors from 'cors'; 
 
-import { QuestionController } from '../controller/question-controller';
-import { Database } from '../utils/database';
+import { Database } from './utils/database';
+import { QuestionController } from './controller/question-controller';
 
 
 export class Server {
@@ -15,11 +15,10 @@ export class Server {
     this.app = express();
     this.database = new Database();
     this.database.createConnection();
-    this.initializeMiddlers();
+    this.middler();
     this.routers();
   }
 
-  // cors
   private enabledCors() {
     const options: cors.CorsOptions = {
       methods: 'GET, OPTIONS, PUT, POST, DELETE',
@@ -28,12 +27,12 @@ export class Server {
     this.app.use(cors(options));
   }
 
-  // middler
-  private initializeMiddlers() {
+  private middler() {
     this.enabledCors();
-    this.app.use(bodyParse.json());
-    this.app.use(bodyParse.urlencoded({ extended: true }));
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: false }));
   }
+
 
   // routes
   private routers() {

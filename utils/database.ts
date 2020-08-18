@@ -3,7 +3,7 @@ import { environment } from '../environment/environment';
 
 export class Database {
 
-  private options = {
+  private options = { 
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false,
@@ -13,4 +13,5 @@ export class Database {
   public createConnection(): void {
     mongoose.connect(environment.DATABASE, this.options);
   }
+
 }

@@ -1,11 +1,10 @@
-import { IQuestion } from '../repository/IQuestion';
 import { Question } from '../models/question';
 import { QuestionRepository } from '../repository/question-repository';
 
-class Service implements IQuestion {
+class Service {
 
   async questionAll() {
-    const data = await QuestionRepository.findOne();
+    const data = await QuestionRepository.find();
     return data;
   }
 
