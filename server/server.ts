@@ -15,11 +15,6 @@ export class Server {
     this.app = express();
     this.database = new Database();
     this.database.createConnection();
-    this.initializerModules();
-  }
-
-  // initializer
-  private initializerModules() {
     this.initializeMiddlers();
     this.routers();
   }
