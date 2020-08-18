@@ -7,4 +7,4 @@ interface IQuestion extends mongoose.Document {
   result: boolean;
 }
 
-export const QuestionRepository = mongoose.model<IQuestion>('question', QuestionSchema);
+export const QuestionRepository = mongoose.model<IQuestion>('question-item', QuestionSchema);

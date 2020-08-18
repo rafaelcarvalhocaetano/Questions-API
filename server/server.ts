@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParse from 'body-parser';
+
 import { QuestionController } from '../controller/question-controller';
 import { Database } from '../utils/database';
 
@@ -11,23 +12,22 @@ export class Server {
   private database: Database;
 
   constructor() {
+    this.app = express();
+    this.database = new Database();
+    this.database.createConnection();
     this.initializerModules();
-    this.enabledCors();
-    this.initializeMiddlers();
-    this.routers();
   }
 
   // initializer
   private initializerModules() {
-    this.app = express();
-    this.database = new Database();
-    this.database.createConnection();
+    this.initializeMiddlers();
+    this.routers();
   }
 
   // cors
   private enabledCors() {
     const options: cors.CorsOptions = {
-      methods: 'GET, POST, PUT, DELETE, OPTIONS',
+      methods: 'GET, OPTIONS, PUT, POST, DELETE',
       origin: '*'
     };
     this.app.use(cors(options));
@@ -35,6 +35,7 @@ export class Server {
 
   // middler
   private initializeMiddlers() {
+    this.enabledCors();
     this.app.use(bodyParse.json());
     this.app.use(bodyParse.urlencoded({ extended: true }));
   }
@@ -42,6 +43,7 @@ export class Server {
   // routes
   private routers() {
     this.app.get('/', (req, resp, next) => resp.send({ message: 'success API '}));
+
     this.app.route('/api/v1/question').get(QuestionController.questionAll);
     this.app.route('/api/v1/question/:id').get(QuestionController.questionId);
     this.app.route('/api/v1/question').post(QuestionController.questionCreate);

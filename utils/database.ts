@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { environment } from "../environment/environment";
+import mongoose from 'mongoose';
+import { environment } from '../environment/environment';
 
 export class Database {
 
@@ -11,6 +11,6 @@ export class Database {
   };
 
   public createConnection(): void {
-    mongoose.connect(environment.MONGODB, this.options);
+    mongoose.connect(environment.DATABASE, this.options);
   }
 }
