@@ -1,4 +1,4 @@
 export interface Question {
   question: string;
-  result: boolean;
+  result_question: boolean;
 }

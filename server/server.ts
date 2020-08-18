@@ -2,8 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser'; 
 import cors from 'cors'; 
 
-import { Database } from './utils/database';
-import { QuestionController } from './controller/question-controller';
+import { Database } from '../utils/database';
+import { QuestionController } from '../controller/question-controller';
 
 
 export class Server {

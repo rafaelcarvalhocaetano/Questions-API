@@ -2,9 +2,10 @@ import mongoose from 'mongoose';
 
 export const QuestionSchema = new mongoose.Schema({
   question: {
-    type: String
+    type: String,
+    unique: true
   },
-  result: {
+  result_question: {
     type: Boolean
   }
 });
