@@ -7,11 +7,11 @@ export class Database {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false,
-    useCreateIndex: true
+    useCreateIndex: true,
   };
 
-  public createConnection(): void {
-    mongoose.connect(environment.DATABASE, this.options);
+  public async createConnection() {
+    await mongoose.connect(environment.DATABASE, this.options);
   }
 
 }
